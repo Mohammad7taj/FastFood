@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی شبانه | نئون رستوران</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'food/css/style.css' %}">
+</head>
+<body>
+
+    <!-- افکت نویز و گرادینت متحرک -->
+    <div class="noise-overlay"></div>
+    <div class="gradient-bg"></div>
+
+    <!-- ذرات متحرک (ستاره/برف شهری) -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <div class="neon-title">
+                <h1 class="glitch" data-text="شب‌های نئون">شب‌های نئون</h1>
+                <div class="neon-line"></div>
+                <p class="subtitle">✦ منوی ویژه خیابان‌های بنفش ✦</p>
+            </div>
+        </header>
+
+        <div class="menu-grid" id="menu-container">
+            <!-- منو توسط JS لود می‌شود -->
+        </div>
+
+        <footer>
+            <div class="footer-neon">✦ 24/7 | سفارش آنلاین ✦</div>
+        </footer>
+    </div>
+
+    <script src="{% static 'food/js/main.js' %}"></script>
+</body>
+</html>

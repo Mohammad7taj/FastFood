@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Vazir', monospace;
+    background: #0a0a0f;
+    color: #e0e0ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* گرادینت پس‌زمینه متحرک */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, #1a0a2e, #0a0a0f);
+    z-index: -2;
+    animation: pulseBg 8s ease-in-out infinite;
+}
+
+@keyframes pulseBg {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; background: radial-gradient(circle at 60% 40%, #2a0a3e, #050508); }
+}
+
+/* افکت نویز سینمایی */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 4px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* کانوس ذرات */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* هدر نئونی */
+.neon-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.glitch {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #c084fc;
+    text-shadow: 0 0 5px #a855f7, 0 0 20px #7e22ce, 0 0 40px #4c1d95;
+    position: relative;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: skew(0deg, 0deg); text-shadow: 0 0 5px #a855f7; }
+    95% { transform: skew(0deg, 0deg); }
+    96% { transform: skew(5deg, 2deg); text-shadow: -3px 0 #ff00de, 3px 0 #00ffff; }
+    97% { transform: skew(-3deg, -1deg); }
+}
+
+.neon-line {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, transparent);
+    margin: 20px auto;
+    animation: neonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 5px #a855f7; }
+    50% { opacity: 1; box-shadow: 0 0 20px #a855f7, 0 0 30px #7e22ce; }
+}
+
+.subtitle {
+    color: #b77eff;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    text-shadow: 0 0 8px #7e22ce;
+}
+
+/* گرید منو */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin: 50px 0;
+}
+
+/* کارت‌های خیابانی */
+.menu-card {
+    background: rgba(10, 10, 20, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(160, 80, 255, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(128, 0, 255, 0.2);
+}
+
+.menu-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: #b77eff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px #a855f7;
+}
+
+.menu-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: all 0.5s;
+    filter: brightness(0.85) contrast(1.1);
+}
+
+.menu-card:hover .menu-img {
+    filter: brightness(1) contrast(1.2);
+    transform: scale(1.05);
+}
+
+/* برچسب نئونی */
+.neon-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(128, 0, 255, 0.8);
+    backdrop-filter: blur(5px);
+    color: #e9c0ff;
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid #c084fc;
+    box-shadow: 0 0 12px #a855f7;
+    z-index: 3;
+}
+
+.menu-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.menu-title {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: #e2b6ff;
+    text-shadow: 0 0 6px #a855f7;
+    margin-bottom: 12px;
+}
+
+.menu-desc {
+    color: #b39ddf;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.menu-price {
+    font-size: 1.7rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #d8b4fe, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid #a855f7;
+    border-radius: 40px;
+    transition: 0.3s;
+}
+
+.menu-card:hover .menu-price {
+    background: linear-gradient(135deg, #f0e6ff, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+/* فوتر */
+footer {
+    text-align: center;
+    margin-top: 70px;
+    padding: 25px;
+    border-top: 1px solid rgba(128, 0, 255, 0.3);
+}
+
+.footer-neon {
+    color: #a57cff;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    animation: blinkText 2s infinite;
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 0.7; text-shadow: none; }
+    50% { opacity: 1; text-shadow: 0 0 8px #a855f7; }
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.2rem;
+    }
+    .menu-grid {
+        gap: 20px;
+    }
+    .menu-title {
+        font-size: 1.4rem;
+    }
+}
