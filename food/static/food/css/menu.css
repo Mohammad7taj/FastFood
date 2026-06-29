@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tahoma', 'Segoe UI', 'Vazirmatn', system-ui, sans-serif;
+    background: radial-gradient(circle at 10% 30%, #1e1a2f, #0f0c1f);
+    min-height: 100vh;
+    padding: 100px 30px 50px 30px;
+    position: relative;
+}
+
+/* برگر دکوراتیو پس‌زمینه */
+body::before {
+    content: "🍔🍟🌮";
+    font-size: 180px;
+    position: fixed;
+    bottom: -20px;
+    left: -40px;
+    opacity: 0.03;
+    pointer-events: none;
+    white-space: nowrap;
+    transform: rotate(-10deg);
+    z-index: 0;
+}
+
+body::after {
+    content: "🍕🥤🍗";
+    font-size: 220px;
+    position: fixed;
+    top: 10%;
+    right: -60px;
+    opacity: 0.03;
+    pointer-events: none;
+    transform: rotate(15deg);
+    z-index: 0;
+}
+
+/* ===== دکمه‌های ثابت بالا ===== */
+.fixed-btn {
+    position: fixed;
+    top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ff8c42, #dd6b20);
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 150, 0.5);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* سبد خرید سمت چپ */
+.cart-btn-left {
+    left: 25px;
+}
+
+/* خانه سمت راست */
+.home-btn-right {
+    right: 25px;
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.btn-text {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.fixed-btn:hover .btn-glow {
+    left: 100%;
+}
+
+.fixed-btn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #ff9f4a, #f05a28);
+    box-shadow: 0 10px 25px rgba(255, 100, 0, 0.5);
+}
+
+/* ===== پیام خوش آمدگویی ===== */
+.welcome-message {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.95), rgba(221, 107, 32, 0.95));
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    padding: 18px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 2px solid rgba(255, 215, 150, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: welcomeGlow 2s infinite alternate;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcome-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff3e0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.welcome-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: iconBounce 1s infinite alternate;
+}
+
+/* ===== عنوان صفحه ===== */
+.page-title {
+    text-align: center;
+    color: #FFE5B4;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.5px;
+}
+
+.page-title::before {
+    content: "🔥";
+    margin-left: 12px;
+    font-size: 2rem;
+}
+
+.page-title::after {
+    content: "🔥";
+    margin-right: 12px;
+    font-size: 2rem;
+}
+
+/* ===== گرید 3 ستونی منو ===== */
+.food-grid-3cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 0 10px;
+}
+
+/* کارت غذا */
+.food-card {
+    background: rgba(20, 15, 35, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 160, 80, 0.4);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.5);
+}
+
+.food-card:hover {
+    transform: translateY(-8px);
+    border-color: #ffaa66;
+    box-shadow: 0 20px 35px -8px #ff9f4a40;
+    background: rgba(30, 22, 50, 0.95);
+}
+
+/* تصویر غذا */
+.food-image-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #2a1e2f;
+}
+
+.food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.food-card:hover .food-image {
+    transform: scale(1.08);
+}
+
+/* اطلاعات غذا */
+.food-info {
+    padding: 18px;
+    text-align: center;
+}
+
+.food-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff3e0;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.food-name::before {
+    content: "🍔";
+    font-size: 1.3rem;
+}
+
+.food-price {
+    font-size: 1.3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffb347, #ff7e05);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 12px 0;
+}
+
+.food-price::after {
+    content: " تومان";
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #ffbc7a;
+    margin-right: 4px;
+}
+
+/* دکمه سفارش */
+.order-btn {
+    background: linear-gradient(115deg, #ff8c42, #dd6b20);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    font-family: inherit;
+    width: 100%;
+    max-width: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.order-btn:hover {
+    background: linear-gradient(115deg, #ff9f4a, #f05a28);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 100, 0, 0.4);
+}
+
+/* ===== پیام خطا ===== */
+.empty-message-box {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(20, 15, 35, 0.88);
+    backdrop-filter: blur(10px);
+    border-radius: 48px;
+    max-width: 500px;
+    margin: 50px auto;
+    border: 1px solid rgba(255, 160, 80, 0.4);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.empty-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffbc7a;
+    margin-bottom: 10px;
+}
+
+.empty-subtitle {
+    font-size: 1rem;
+    color: #ffd9a5;
+}
+
+/* ===== انیمیشن‌ها ===== */
+@keyframes welcomeGlow {
+    0% {
+        box-shadow: 0 5px 20px rgba(255, 140, 66, 0.4);
+        border-color: rgba(255, 215, 150, 0.4);
+    }
+    100% {
+        box-shadow: 0 15px 35px rgba(255, 140, 66, 0.8);
+        border-color: rgba(255, 215, 150, 0.9);
+    }
+}
+
+@keyframes iconBounce {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== ریسپانسیو ===== */
+@media (max-width: 1024px) {
+    .food-grid-3cols {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 90px 20px 40px 20px;
+    }
+
+    .fixed-btn {
+        padding: 8px 18px;
+        top: 15px;
+    }
+
+    .cart-btn-left {
+        left: 15px;
+    }
+
+    .home-btn-right {
+        right: 15px;
+    }
+
+    .btn-icon {
+        font-size: 1.2rem;
+    }
+
+    .btn-text {
+        font-size: 0.8rem;
+    }
+
+    .welcome-text {
+        font-size: 1.2rem;
+    }
+
+    .welcome-icon {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .food-grid-3cols {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 450px;
+    }
+
+    .food-image-wrapper {
+        height: 180px;
+    }
+
+    .food-name {
+        font-size: 1.2rem;
+    }
+
+    .food-price {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fixed-btn {
+        padding: 6px 14px;
+    }
+
+    .btn-text {
+        display: none;
+    }
+
+    .fixed-btn {
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .btn-icon {
+        font-size: 1.4rem;
+        margin: 0;
+    }
+
+    .welcome-text {
+        font-size: 1rem;
+        gap: 8px;
+    }
+
+    .welcome-icon {
+        font-size: 1.2rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .page-title::before,
+    .page-title::after {
+        font-size: 1.3rem;
+    }
+}

@@ -5,7 +5,9 @@ from food.models import Food
 
 def meno(request):
     foods = Food.objects.all()
-    return render(request, 'food/index.html', {'foods':foods}) 
+    return render(request, 'food/menu.html', {'foods':foods}) 
 
 
+
+ 
 

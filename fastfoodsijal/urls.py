@@ -5,8 +5,12 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('food/', include("food.urls"))
+    path('food/', include("food.urls")),
+    path('', include("home.urls")),
+    path('sijal/', include("home.urls")),
 ]
+
+
 
 
 

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ sijal.name }} | پروفایل شخصی</title>
+    <link rel="stylesheet" href="{% static 'home/css/sijal.css' %}">
+</head>
+<body>
+
+    <div class="home-button">
+        <a href="{% url 'home' %}" class="btn-home">
+            <span>🏠</span>
+            خانه
+        </a>
+    </div>
+
+
+    <div class="container">
+        {% for sijal in sijals %}
+        <div class="profile-main">
+            <div class="profile-image">
+                {% if sijal.image %}
+                    <img src="{{ sijal.image.url }}" alt="{{ sijal.name }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/800x450?text=Profile+Image" alt="تصویر پروفایل">
+                {% endif %}
+                <div class="image-badge">
+                    ✨ پروفایل شخصی ✨
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <h1 class="profile-name">{{ sijal.name }}</h1>
+                
+                <div class="profile-bio">
+                    {{ sijal.bio|linebreaks|default:"بیوگرافی ثبت نشده است" }}
+                </div>
+
+
+                <div class="gallery-button">
+                    <a href="#" class="btn-gallery">
+                        <span>📸</span>
+                        گالری تصاویر
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="profile-main">
+            <div class="profile-content">
+                <div class="empty-state">
+                    <h3>😢 پروفایلی یافت نشد</h3>
+                    <p>لطفاً ابتدا در پنل ادمین اطلاعاتی اضافه کنید</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی غذا | فست فودی عمو </title>
+    <link rel="stylesheet" href="{% static 'food/css/menu.css' %}">
+</head>
+<body>
+
+    <!-- دکمه سبـد خرید سمت چپ و بالا (ثابت) -->
+    <a href="#" class="fixed-btn cart-btn-left" title="سبد خرید">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">سبد خرید</span>
+        <div class="btn-glow"></div>
+    </a>
+
+    
+    <!-- دکمه خانه سمت راست و بالا (ثابت) -->
+    <a href="{% url 'home' %}" class="fixed-btn home-btn-right" title="خانه">
+        <span class="btn-icon">🏠</span>
+        <span class="btn-text">خانه</span>
+        <div class="btn-glow"></div>
+    </a>
+
+    <div class="welcome-message">
+        <div class="welcome-text">
+            <span class="welcome-icon">🍔</span>
+            <span>منوی فست فودی عمو سیحل</span>
+            <span class="welcome-icon">🌮</span>
+        </div>
+    </div>
+
+    
+    <h1 class="page-title">منو</h1>
+
+    {% if foods %}
+        <div class="food-grid-3cols">
+            {% for item in foods %}
+                <div class="food-card">
+                    <div class="food-image-wrapper">
+                        {% if item.cover and item.cover.url %}
+                            <img src="{{ item.cover.url }}" alt="{{ item.name }}" class="food-image">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" alt="پیش‌نمایش غذا" class="food-image">
+                        {% endif %}
+                    </div>
+                    <div class="food-info">
+                        <h3 class="food-name">{{ item.name }}</h3>
+                        <div class="food-price">{{ item.qimat|default:"---" }} تومان</div>
+                        <button class="order-btn">سفارش 🍽️</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-message-box">
+            <div class="empty-icon">❗</div>
+            <div class="empty-title">منویی برای نمایش وجود ندارد</div>
+            <div class="empty-subtitle">لطفاً بعداً مراجعه کنید</div>
+        </div>
+    {% endif %}
+
+</body>
+</html>

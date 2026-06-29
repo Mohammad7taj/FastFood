@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tahoma', 'Segoe UI', 'Vazirmatn', system-ui, sans-serif;
+    background: radial-gradient(circle at 10% 30%, #1e1a2f, #0f0c1f);
+    min-height: 100vh;
+    padding: 30px 90px 50px 20px;
+    position: relative;
+}
+
+/* برگر دکوراتیو پس‌زمینه */
+body::before {
+    content: "🍔🍟🌮";
+    font-size: 180px;
+    position: fixed;
+    bottom: -20px;
+    left: -40px;
+    opacity: 0.03;
+    pointer-events: none;
+    white-space: nowrap;
+    transform: rotate(-10deg);
+    z-index: 0;
+}
+
+body::after {
+    content: "🍕🥤🍗";
+    font-size: 220px;
+    position: fixed;
+    top: 10%;
+    right: -60px;
+    opacity: 0.03;
+    pointer-events: none;
+    transform: rotate(15deg);
+    z-index: 0;
+}
+
+/* ========== دکمه خانه (همان کلاس‌های موجود در HTML) ========== */
+.home-button {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.btn-home {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ff8c42, #dd6b20);
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 150, 0.5);
+    overflow: hidden;
+    position: relative;
+}
+
+.btn-home span {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.btn-home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-home:hover::before {
+    left: 100%;
+}
+
+.btn-home:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #ff9f4a, #f05a28);
+    box-shadow: 0 10px 25px rgba(255, 100, 0, 0.5);
+}
+
+/* ========== کانتینر اصلی ========== */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== پروفایل اصلی ========== */
+.profile-main {
+    background: rgba(20, 15, 35, 0.88);
+    backdrop-filter: blur(10px);
+    border-radius: 48px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 160, 80, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.profile-main:hover {
+    transform: translateY(-5px);
+    border-color: #ffaa66;
+    box-shadow: 0 25px 45px -8px #ff9f4a40;
+}
+
+/* ========== تصویر پروفایل ========== */
+.profile-image {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.profile-main:hover .profile-image img {
+    transform: scale(1.05);
+}
+
+.image-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff8c42, #dd6b20);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 150, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+/* ========== محتوای پروفایل ========== */
+.profile-content {
+    padding: 35px 40px;
+}
+
+.profile-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffb347, #ff7e05);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.profile-name::before {
+    content: "👨‍🍳";
+    font-size: 2rem;
+    margin-left: 12px;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #ffbc7a;
+}
+
+.profile-name::after {
+    content: "👨‍🍳";
+    font-size: 2rem;
+    margin-right: 12px;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #ffbc7a;
+}
+
+/* بیوگرافی */
+.profile-bio {
+    color: #ffefcf;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    text-align: justify;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    padding: 20px;
+}
+
+/* ========== دکمه گالری ========== */
+.gallery-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-gallery {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(115deg, #ff8c42, #dd6b20);
+    color: white;
+    text-decoration: none;
+    padding: 14px 35px;
+    border-radius: 60px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 150, 0.5);
+}
+
+.btn-gallery span {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.btn-gallery:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(115deg, #ff9f4a, #f05a28);
+    gap: 18px;
+    box-shadow: 0 12px 28px rgba(255, 100, 0, 0.4);
+}
+
+/* ========== حالت خالی (empty state) ========== */
+.empty-state {
+    text-align: center;
+    padding: 60px 30px;
+}
+
+.empty-state h3 {
+    font-size: 1.8rem;
+    color: #ffbc7a;
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+    color: #ffd9a5;
+    font-size: 1rem;
+}
+
+.empty-state h3::before {
+    content: "🍔";
+    margin-left: 12px;
+    font-size: 2rem;
+}
+
+/* ========== انیمیشن‌ها ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-main {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ========== ریسپانسیو ========== */
+@media (max-width: 850px) {
+    body {
+        padding: 20px 80px 40px 15px;
+    }
+
+    .profile-image {
+        height: 280px;
+    }
+
+    .profile-content {
+        padding: 25px 25px;
+    }
+
+    .profile-name {
+        font-size: 2rem;
+    }
+
+    .profile-name::before,
+    .profile-name::after {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 80px 20px 40px 20px;
+    }
+
+    .home-button {
+        top: 15px;
+        right: 15px;
+    }
+
+    .btn-home {
+        padding: 8px 18px;
+    }
+
+    .btn-home span {
+        font-size: 1.2rem;
+    }
+
+    .btn-home {
+        font-size: 0.85rem;
+    }
+
+    .profile-image {
+        height: 220px;
+    }
+
+    .profile-content {
+        padding: 20px 18px;
+    }
+
+    .profile-name {
+        font-size: 1.6rem;
+    }
+
+    .profile-name::before,
+    .profile-name::after {
+        font-size: 1.3rem;
+    }
+
+    .profile-bio {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    .image-badge {
+        font-size: 0.7rem;
+        padding: 5px 15px;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .btn-gallery {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
+
+    .btn-gallery span {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-name {
+        font-size: 1.3rem;
+    }
+
+    .profile-name::before,
+    .profile-name::after {
+        font-size: 1rem;
+        display: inline-block;
+    }
+
+    .profile-bio {
+        font-size: 0.85rem;
+    }
+
+    .btn-home span {
+        font-size: 1rem;
+    }
+
+    .btn-home {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+    }
+
+    .image-badge {
+        font-size: 0.6rem;
+        padding: 4px 12px;
+    }
+
+    .empty-state h3 {
+        font-size: 1.3rem;
+    }
+}

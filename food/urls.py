@@ -5,6 +5,8 @@ from food.views import (
 )
 
 
+
+
 urlpatterns = [
     path('meno/', meno , name='meno'),
     #path('aboot/', aboot , name='abot'),

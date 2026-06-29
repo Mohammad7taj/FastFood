@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیشنهاد روز | عمو </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+</head>
+<body>
+    <!-- پیام خوش آمدگویی در بالای صفحه -->
+    <div class="welcome-message">
+        <div class="welcome-text">
+            
+            خوش آمدید به فست فودی عمو سیجل
+            <span class="welcome-icon">🍔</span>
+        </div>
+        <div class="welcome-subtitle">بهترین فست فودی شهر</div>
+    </div>
+
+
+    <div class="side-navbar">
+
+        <a href="#" class="side-btn shop-btn-animated">
+            <div class="side-btn-icon">🛒</div>
+            <div class="side-btn-text">خرید</div>
+            <div class="btn-glow"></div>
+        </a>
+
+    </div>
+
+    <h1 class="page-title">🍽️ پیشنهاد ویژه روز</h1>
+    
+    <ul class="food-list">
+        {% if pishs %}
+            {% for pish in pishs %}
+                <li class="food-item">
+                    <div class="food-name">{{ pish.namem }}</div>
+                    <div class="food-price">{{ pish.qimatt|floatformat:0 }}</div>
+                    {% if pish.akss %}
+                        <img src="{{ pish.akss.url }}" alt="{{ pish.namem }}" class="food-image">
+                    {% else %}
+                        <img src="/static/images/default-food.jpg" alt="غذا" class="food-image">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% else %}
+            <li class="food-item empty-message">
+                <div class="food-name">⛔ هیچ غذایی یافت نشد</div>
+                <div class="food-price">لطفاً به پنل ادمین مراجعه کنید</div>
+            </li>
+        {% endif %}
+    </ul>
+    
+    <!-- دکمه‌های پایین صفحه (اختیاری) -->
+    <div class="buttons-container">
+        <a href="{% url 'meno' %}" class="menu-btn">
+            <div class="btn-icon">🍽️</div>
+            <div class="btn-label">منو غذا</div>
+        </a>
+        <a href="{% url 'sijal' %}" class="menu-btn">
+            <div class="btn-icon">👤</div>
+            <div class="btn-label">درباره من</div>
+        </a>
+    </div>
+</body>
+</html>

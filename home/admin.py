@@ -1,3 +1,9 @@
 from django.contrib import admin
+from home.models import Sijal, GalleryImage , Pishnahadroz
 
-# Register your models here.
+
+
+
+admin.site.register(Sijal)
+admin.site.register(GalleryImage)
+admin.site.register(Pishnahadroz)
